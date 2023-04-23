@@ -23,6 +23,7 @@ ext{
      * https://spring.io/projects/spring-cloud 여기서 스프링부트 버전이랑 호환되는거 꼭 맞춰줘야함!
      */
     set('springCloudVersion', '2021.0.4')
+    set('commonLangVersion', '3.12.0')
 }
 
 dependencyManagement {
@@ -39,6 +40,9 @@ dependencies {
 
     //feign
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+    // StringUtils
+    implementation "org.apache.commons:commons-lang3:${commonLangVersion}"
 }
 
 tasks.named('test') {
