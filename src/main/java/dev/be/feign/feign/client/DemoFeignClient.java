@@ -5,10 +5,7 @@ import dev.be.feign.common.dto.BaseResponseInfo;
 import dev.be.feign.feign.config.DemoFeignConfig;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @FeignClient(
         name = "demo-client", // pk같은 개념이다. 이 페인클라이언트의 이름이다.
@@ -23,9 +20,11 @@ public interface DemoFeignClient {
                                              @RequestParam("age") Long age);
 
 
-    @GetMapping("/post")
+    @PostMapping("/post")
     ResponseEntity<BaseResponseInfo> callPost(@RequestHeader("CustomHeaderName") String customHeader,
                                               @RequestBody BaseRequestInfo baseRequestInfo);
 
+    @GetMapping("/error")
+    ResponseEntity<BaseResponseInfo> callErrorDecoder();
 
 }
